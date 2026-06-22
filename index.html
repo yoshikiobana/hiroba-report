@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>広場の日常的賑わい 調査レポート</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.24.0/dist/tabler-icons.min.css" />
+<style>
+:root{
+ --bg:#faf9f5; --surface:#ffffff; --ink:#26251f; --ink2:#5f5e57; --ink3:#8b8a82;
+ --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.22); --accent:#185fa5; --accentbg:#e6f1fb;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Noto Sans JP",sans-serif;line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+header.hero{background:var(--surface);border-bottom:1px solid var(--line);padding:38px 0 30px}
+.hero h1{font-size:30px;font-weight:600;margin:0 0 6px;letter-spacing:.01em}
+.hero .sub{color:var(--ink2);font-size:15px;margin:0}
+.hero .meta{color:var(--ink3);font-size:13px;margin-top:14px}
+nav.toc{position:sticky;top:0;z-index:50;background:rgba(250,249,245,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 0}
+nav.toc .wrap{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+nav.toc a{font-size:13px;color:var(--ink2);text-decoration:none;padding:5px 11px;border-radius:8px;border:1px solid transparent;white-space:nowrap}
+nav.toc a:hover{background:var(--accentbg);color:var(--accent);border-color:var(--line)}
+section{padding:40px 0 8px}
+h2.ch{font-size:23px;font-weight:600;margin:0 0 4px;padding-bottom:10px;border-bottom:2px solid var(--ink);display:inline-block}
+h3{font-size:18px;font-weight:600;margin:30px 0 8px}
+h4{font-size:15px;font-weight:600;margin:20px 0 6px;color:var(--ink)}
+p{margin:10px 0}
+blockquote{margin:16px 0;padding:14px 18px;background:var(--accentbg);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;font-size:15.5px;color:#0c447c}
+table.tbl{border-collapse:collapse;width:100%;margin:14px 0;font-size:13.5px;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+table.tbl th,table.tbl td{border-bottom:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top}
+table.tbl th{background:#f1efe8;font-weight:600;font-size:13px}
+table.tbl tr:last-child td{border-bottom:none}
+ul.clean{margin:10px 0;padding-left:22px}
+ul.clean li{margin:6px 0}
+a.ext{color:var(--accent);text-decoration:none}
+a.ext:hover{text-decoration:underline}
+.note{background:#f1efe8;border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:13.5px;color:var(--ink2);margin:14px 0}
+.principle{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:12px 16px;margin:10px 0}
+.principle b{color:var(--accent)}
+/* gallery */
+.fbar{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:18px 0 22px}
+.frow{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;padding:9px 0;border-bottom:1px dashed var(--line)}
+.frow:last-child{border-bottom:none}
+.flabel{font-size:12.5px;font-weight:600;color:var(--ink2);min-width:84px;padding-top:6px;display:flex;align-items:center;gap:5px}
+.fchips{display:flex;gap:7px;flex-wrap:wrap;flex:1}
+.seg{font-size:12.5px;padding:6px 13px;border-radius:8px;border:1px solid var(--line2);background:transparent;color:var(--ink2);cursor:pointer;font-family:inherit}
+.seg.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;padding:6px 13px;border-radius:999px;cursor:pointer;border:1px solid;font-family:inherit;line-height:1.3}
+.toggle{display:inline-flex;border:1px solid var(--line2);border-radius:999px;overflow:hidden}
+.toggle button{font-size:12.5px;padding:6px 15px;border:none;background:transparent;color:var(--ink2);cursor:pointer;font-family:inherit}
+.toggle button.on{background:var(--accent);color:#fff}
+.count{font-size:13px;color:var(--ink2);margin:0 0 14px}
+.btn-reset{font-size:12.5px;padding:6px 13px;border-radius:8px;border:1px solid var(--line2);background:transparent;color:var(--ink2);cursor:pointer;font-family:inherit}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.imgwrap{height:165px;position:relative;display:flex;align-items:center;justify-content:center}
+.imgwrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s}
+.imgwrap .ph{font-size:38px;opacity:.45}
+.cbody{padding:13px 15px 15px;display:flex;flex-direction:column;gap:9px}
+.cname{font-size:15.5px;font-weight:600;line-height:1.45}
+.cloc{font-size:12.5px;color:var(--ink2);margin-top:2px}
+.ctags{display:flex;flex-wrap:wrap;gap:5px}
+.cmeta{font-size:12.5px;line-height:1.65;color:var(--ink2)}
+.cmeta .k{color:var(--ink3)}
+.cco{font-size:13.5px;line-height:1.7;color:var(--ink)}
+.cbadges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:11px;padding:3px 8px;border-radius:6px;background:#f1efe8;color:var(--ink2);border:1px solid var(--line)}
+.clink{font-size:12px;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:4px;margin-top:2px}
+footer{padding:40px 0 60px;color:var(--ink3);font-size:13px;border-top:1px solid var(--line);margin-top:40px}
+@media(max-width:560px){.hero h1{font-size:24px}.flabel{min-width:auto}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+<h1>広場の日常的賑わいに関する調査レポート</h1>
+<p class="sub">「日常の賑わい」を生む広場の条件・類型・国内外事例50件</p>
+<p class="meta">作成日：2026年6月21日 ／ 目的：「広場の日常の賑わい」とはどのような姿かを理解する</p>
+</div></header>
+
+<nav class="toc"><div class="wrap">
+<a href="#ch1"><i class="ti ti-book"></i> 第1章 定義</a>
+<a href="#ch2"><i class="ti ti-list-check"></i> 第2章 評価尺度</a>
+<a href="#ch3"><i class="ti ti-category"></i> 第3章 10類型</a>
+<a href="#ch4"><i class="ti ti-map-pin"></i> 第4章 事例50件</a>
+<a href="#ch5"><i class="ti ti-bulb"></i> 第5章 森ビルへの示唆</a>
+</div></nav>
+
+<main class="wrap">
+
+<section id="ch1">
+<h2 class="ch">第1章　「広場の日常的賑わい」の定義</h2>
+<p>本章では、広場・公共空間の日常利用について体系的に論じた文献群を基盤に、「広場の日常的賑わい」を帰納的・仮説的に定義する。</p>
+
+<h3>1-1. 主要文献の知見</h3>
+<h4>ヤン・ゲール『建物のあいだのアクティビティ』(1971/1987)</h4>
+<p>ゲールは屋外の人間活動を3類型に分類した。</p>
+<table class="tbl"><tr><th>活動類型</th><th>内容</th><th>環境依存度</th></tr>
+<tr><td>必要活動</td><td>通勤・通学・買い物などやむを得ず行う活動</td><td>低い（環境が悪くても発生）</td></tr>
+<tr><td>任意活動</td><td>散歩・休息・風景を眺めるなど気が向いた時に行う活動</td><td><b>高い（環境の質に大きく左右される）</b></td></tr>
+<tr><td>社会活動</td><td>挨拶・会話・子どもの遊び・人間観察など他者を前提とする交流</td><td>任意活動の水準に連動</td></tr></table>
+<p>核心は、<b>屋外環境の質を高めれば任意活動が増え、任意活動が増えれば社会活動も連鎖的に増加する</b>という因果連鎖である。日常の賑わいとは、この任意活動と社会活動の複合的な発生状態にほかならない。（<a class="ext" href="https://www.pps.org/article/jgehl">PPS - Jan Gehl</a>／<a class="ext" href="https://www.ur-net.go.jp/aboutus/action/placemaking/lrmhph000001y14u-att/PLACEMAKING_KAISETSU_20210914_2.pdf">UR都市機構</a>）</p>
+
+<h4>ウィリアム・H・ホワイト『小さな都市空間の社会的生活』(1980)</h4>
+<p>NYの広場を映像観察し成功要因を実証的に抽出した。①座れる場所（広場面積の6〜10%）、②日照・風・樹木・水の制御、③フードベンダー、④街路との接続性。（<a class="ext" href="https://urbandesignlab.in/william-h-whyte-public-space-theory/">Urban Design Lab</a>）</p>
+
+<h4>レイ・オルデンバーグ『サードプレイス』(1989)</h4>
+<p>家庭（第1）・職場（第2）に次ぐ「第3の場所」の重要性を提唱。中立的・平等・会話が主活動・常連の存在・低コストが特徴。（<a class="ext" href="https://courier.unesco.org/en/articles/third-places-true-citizen-spaces">UNESCO Courier</a>）</p>
+
+<h4>PPSの評価フレームワーク／日本の公共空間論</h4>
+<p>PPSは成功する公共空間の4要素として Access & Linkages／Comfort & Image／Uses & Activities／Sociability を挙げる（<a class="ext" href="https://www.pps.org/article/what-is-placemaking">PPS</a>）。日本固有の特性としてUR都市機構は<b>「空間の伸縮性」</b>――店舗の「間」が道路と連続し、市や祭の際に広場的空間が日常時より拡大する現象――を指摘する（<a class="ext" href="https://www.ur-net.go.jp/aboutus/action/placemaking/lrmhph000001y14u-att/PLACEMAKING_KAISETSU_20210914_3.pdf">UR都市機構</a>）。</p>
+
+<h3>1-2. 帰納的・仮説的定義</h3>
+<blockquote>「広場の日常的賑わい」とは、特別なイベント（ハレ）を前提とせずに、広場の物理的環境・運営の質によって、多様な人々の任意活動（滞留・休息・散歩・飲食・読書・遊び等）と社会活動（会話・人間観察・偶発的交流等）が日常的・反復的に生起し、時間帯や曜日を問わず人の流れと滞留が持続している状態をいう。それは「計画された偶発性」――人々が自ら居場所を見つけ自発的に活動を展開できる環境条件の整備――によって実現される。</blockquote>
+</section>
+
+<section id="ch2">
+<h2 class="ch">第2章　日常的賑わいを生む広場の条件・評価尺度</h2>
+<h3>A. 空間構成（ハード）</h3>
+<table class="tbl"><tr><th>#</th><th>尺度</th><th>内容</th></tr>
+<tr><td>A1</td><td>平面形状・規模</td><td>人間スケール（顔が識別できる約25m）を基本単位とする面積・形状</td></tr>
+<tr><td>A2</td><td>断面構成・レベル差</td><td>段差・斜面・テラス・サンクン。座れるエッジ、見下ろし／見上げの関係</td></tr>
+<tr><td>A3</td><td>街路との接続性</td><td>周囲の歩行者動線との接点数と開放度（成否の最重要要因）</td></tr>
+<tr><td>A4</td><td>エッジの質</td><td>縁辺部の店舗ファサード、テラス席、半屋外空間</td></tr>
+<tr><td>A5</td><td>視認性</td><td>通りからの見通しと広場内部の相互視認性</td></tr>
+<tr><td>A6</td><td>日照・風環境</td><td>日照確保と風の制御</td></tr></table>
+<h3>B. ファニチャー・装置</h3>
+<table class="tbl"><tr><th>#</th><th>尺度</th><th>内容</th></tr>
+<tr><td>B1</td><td>座面の量と多様性</td><td>ベンチ・可動椅子・段差・芝生。面積の6〜10%</td></tr>
+<tr><td>B2</td><td>可動性</td><td>利用者が自分で環境を調整できる可動什器</td></tr>
+<tr><td>B3</td><td>水景・水遊び</td><td>噴水・流水・ミスト・親水デッキ</td></tr>
+<tr><td>B4</td><td>緑・植栽</td><td>樹木（木陰）・花壇・芝生</td></tr>
+<tr><td>B5</td><td>遊具・インタラクティブ要素</td><td>遊び場・アート・健康器具</td></tr>
+<tr><td>B6</td><td>照明・夜間環境</td><td>夜間の安全性と魅力（24時間利用）</td></tr></table>
+<h3>C. 付帯施設・プログラム</h3>
+<table class="tbl"><tr><th>#</th><th>尺度</th><th>内容</th></tr>
+<tr><td>C1</td><td>飲食提供</td><td>カフェ・キオスク・フードトラック（社会活動の触媒）</td></tr>
+<tr><td>C2</td><td>小売・マーケット</td><td>常設店舗・定期マルシェ</td></tr>
+<tr><td>C3</td><td>文化施設との近接</td><td>美術館・図書館・劇場・大学との隣接</td></tr>
+<tr><td>C4</td><td>公共サービス拠点</td><td>トイレ・Wi-Fi・電源・ベビー設備</td></tr>
+<tr><td>C5</td><td>定期プログラム</td><td>ヨガ・読み聞かせ等の無料・低コストの定期活動</td></tr></table>
+<h3>D. 運営・マネジメント</h3>
+<table class="tbl"><tr><th>#</th><th>尺度</th><th>内容</th></tr>
+<tr><td>D1</td><td>運営主体</td><td>BID・エリアマネジメント団体・指定管理者</td></tr>
+<tr><td>D2</td><td>維持管理の質</td><td>日常的な清掃・メンテナンス</td></tr>
+<tr><td>D3</td><td>安全・安心</td><td>自然監視性（CPTED）・見守り</td></tr>
+<tr><td>D4</td><td>市民参加・共創</td><td>利用者の声を反映、社会実験</td></tr>
+<tr><td>D5</td><td>公民連携スキーム</td><td>Park-PFI・都市再生特別地区等</td></tr></table>
+<h3>E. コンテクスト（立地・文脈）</h3>
+<table class="tbl"><tr><th>#</th><th>尺度</th><th>内容</th></tr>
+<tr><td>E1</td><td>交通結節点との近接</td><td>駅・バス停・自転車ステーション</td></tr>
+<tr><td>E2</td><td>周辺人口密度・用途混在</td><td>住・職・商の混在度、昼夜間人口比</td></tr>
+<tr><td>E3</td><td>歴史・文化的文脈</td><td>地域の歴史・文化資源</td></tr>
+<tr><td>E4</td><td>気候・季節対応</td><td>冬のスケートリンク、夏のミスト等の季節変化</td></tr></table>
+</section>
+
+<section id="ch3">
+<h2 class="ch">第3章　日常的賑わいを生む広場の10類型</h2>
+<p>条件・評価尺度の組み合わせから、典型的なパターンを10類型に整理する。多くの成功事例は複数の類型を兼ね備える。</p>
+<table class="tbl"><tr><th>類型</th><th>概要</th><th>主要因</th></tr>
+<tr><td>① 市場・マルシェ型</td><td>定期市・露店・屋台が核。買い物が飲食・交流へ展開</td><td>C1,C2,A3</td></tr>
+<tr><td>② カフェテラス型</td><td>周囲のカフェ・テラス席が中心。飲食しながらの人間観察</td><td>C1,A4,B1</td></tr>
+<tr><td>③ 芝生・ピクニック型</td><td>大きな芝生面で各自が自由に過ごす。居場所を自ら見つける</td><td>B1,B4,A1</td></tr>
+<tr><td>④ 水辺・親水型</td><td>噴水・流水・運河が中核的魅力。水遊び・水辺散策を誘発</td><td>B3,A2,B5</td></tr>
+<tr><td>⑤ 通過動線統合型</td><td>主要動線上で通過と滞留が混在。街路の広場化を含む</td><td>A3,E1,A5</td></tr>
+<tr><td>⑥ 文化施設隣接型</td><td>美術館・図書館・大学に隣接し利用者の滞留が溢れ出す</td><td>C3,A4,E3</td></tr>
+<tr><td>⑦ 遊び場・多世代交流型</td><td>遊具・インタラクティブ装置で多世代の滞留</td><td>B5,B3,C4</td></tr>
+<tr><td>⑧ コミュニティリビング型</td><td>住宅地近接の「まちの居間」。常連が日常的に集う</td><td>D1,E2,D4</td></tr>
+<tr><td>⑨ タクティカル・可変型</td><td>パークレット・社会実験・仮設装置で段階的に活性化</td><td>D4,B2,D5</td></tr>
+<tr><td>⑩ ランドスケープ劇場型</td><td>地形・眺望・アートの強い空間体験。居ること自体が目的化</td><td>A2,E3,B6</td></tr></table>
+</section>
+
+<section id="ch4">
+<h2 class="ch">第4章　国内外の事例50件</h2>
+<p>50件を10類型で分類し、各事例に計画主体・デザイン主体・コンセプト・代表画像を付した。下のフィルタで、類型・地域・計画主体を組み合わせて抽出できる。</p>
+<div class="note"><i class="ti ti-photo"></i> 画像は各事例のWikipedia代表写真を自動取得します（オンライン接続が必要）。取得できない事例は、<b>このHTMLと同じ階層の <code>images/</code> フォルダ</b>に <code>01.jpg</code> 〜 <code>50.jpg</code>（事例番号のゼロ埋め2桁）の画像を置くと自動的に貼り付きます。ローカル画像は常にWikipedia画像より優先されます。</div>
+
+<div class="fbar">
+ <div class="frow">
+  <div class="flabel"><i class="ti ti-category"></i> 類型</div>
+  <div class="fchips" id="f-types"></div>
+ </div>
+ <div class="frow">
+  <div class="flabel"><i class="ti ti-stack-2"></i> 類型の論理</div>
+  <div class="fchips" style="align-items:center">
+   <div class="toggle" id="f-mode"><button data-m="or" class="on">OR（いずれか該当）</button><button data-m="and">AND（すべて該当）</button></div>
+  </div>
+ </div>
+ <div class="frow">
+  <div class="flabel"><i class="ti ti-world"></i> 地域</div>
+  <div class="fchips" id="f-region"></div>
+ </div>
+ <div class="frow">
+  <div class="flabel"><i class="ti ti-building-community"></i> 計画主体</div>
+  <div class="fchips" id="f-planner"></div>
+ </div>
+ <div class="frow" style="border-top:1px dashed var(--line)">
+  <div class="flabel"></div>
+  <div class="fchips"><button class="btn-reset" id="f-reset"><i class="ti ti-refresh"></i> すべてリセット</button></div>
+ </div>
+</div>
+<p class="count" id="f-count"></p>
+<div class="grid" id="grid"></div>
+</section>
+
+<section id="ch5">
+<h2 class="ch">第5章　森ビルの広場づくりへの示唆</h2>
+<h3>5-1.「日常の賑わい」のための5原則</h3>
+<div class="principle"><b>原則1：「座れる場所」の量と多様性を最大化する</b><br>広場面積の6〜10%を多様な座面（ベンチ・可動椅子・段差・芝生・レッジ）で構成。可動椅子は利用者に選択権を与え滞留時間を延ばす。</div>
+<div class="principle"><b>原則2：飲食を「日常の触媒」として位置づける</b><br>カフェ・キオスク・フードトラックをエッジに配置。テイクアウトで芝生やベンチに持ち込める動線設計も重要。</div>
+<div class="principle"><b>原則3：街路と広場の「境界」を溶かす</b><br>日本的な「空間の伸縮性」を活かし、1階アクティブファサード、テラス張り出し、道路の広場化で境界を曖昧化する。</div>
+<div class="principle"><b>原則4：「計画された偶発性」を設計する</b><br>イベントがなくても人が留まる仕掛け（水景・木陰・電源・遊び場・人間観察に適した座面配置）を多層的に埋め込む。</div>
+<div class="principle"><b>原則5：専門的運営主体による日常的マネジメント</b><br>ブライアントパーク方式に倣い、清掃・安全・定期プログラムを専門組織が日常運営する。タウンマネジメント事業部はイベント型から日常型へ拡張できる素地を持つ。</div>
+<h3>5-2. 森ビルの強みと接続可能性</h3>
+<ul class="clean">
+<li><b>タウンマネジメントの蓄積</b>：六本木・虎ノ門ヒルズ等のエリアマネジメント経験を日常運営型へ拡張可能</li>
+<li><b>1階店舗のコントロール力</b>：テナントミックスを制御でき、エッジの質（A4）を最適化しやすい</li>
+<li><b>複合開発のスケール</b>：森美術館等の文化施設隣接型の相乗効果を広場設計に組み込める</li>
+</ul>
+<div class="note">計画主体・デザイン主体の傾向：行政主導22件／民間デベロッパー10件／官民連携(PPP)10件／自然発生・歴史的形成5件／市民・NPO主導3件。デザイン主体ではランドスケープアーキテクト主導の事例が増加し、「建築からでなく屋外空間から始める」ゲール的アプローチが浸透している。</div>
+</section>
+
+</main>
+
+<footer><div class="wrap">
+本レポートは公開情報・各事例公式サイト・学術文献に基づき作成。事例引用には各出典URLを付した。画像はWikipedia等から取得（各画像の権利は原権利者に帰属）。社外配布時は画像ライセンスの確認を推奨します。
+</div></footer>
+
+<script>
+const TYPES={
+ market:{l:"市場・マルシェ型",c:"#BA7517",bg:"#FAEEDA",tx:"#633806",i:"ti-basket"},
+ cafe:{l:"カフェテラス型",c:"#D85A30",bg:"#FAECE7",tx:"#712B13",i:"ti-coffee"},
+ lawn:{l:"芝生・ピクニック型",c:"#639922",bg:"#EAF3DE",tx:"#27500A",i:"ti-plant-2"},
+ water:{l:"水辺・親水型",c:"#378ADD",bg:"#E6F1FB",tx:"#0C447C",i:"ti-ripple"},
+ flow:{l:"通過動線統合型",c:"#888780",bg:"#F1EFE8",tx:"#444441",i:"ti-arrow-guide"},
+ culture:{l:"文化施設隣接型",c:"#534AB7",bg:"#EEEDFE",tx:"#3C3489",i:"ti-building-arch"},
+ play:{l:"遊び場・多世代交流型",c:"#D4537E",bg:"#FBEAF0",tx:"#72243E",i:"ti-mood-kid"},
+ community:{l:"コミュニティリビング型",c:"#1D9E75",bg:"#E1F5EE",tx:"#085041",i:"ti-sofa"},
+ tactical:{l:"タクティカル・可変型",c:"#BA7517",bg:"#FAEEDA",tx:"#633806",i:"ti-tool"},
+ landscape:{l:"ランドスケープ劇場型",c:"#534AB7",bg:"#EEEDFE",tx:"#26215C",i:"ti-mountain"}
+};
+const REGIONS={japan:"日本",europe:"欧州",namerica:"北米",asiaoce:"アジア・オセアニア",latamafrica:"中南米・アフリカ"};
+const PLANNERS={gov:"行政主導",private:"民間デベロッパー",ppp:"官民連携(PPP)",organic:"自然発生・歴史",civic:"市民・NPO主導"};
+const DATA=[
+{n:1,name:"ストロイエ",loc:"🇩🇰 コペンハーゲン",r:"europe",p:"gov",t:["flow","cafe"],pl:"コペンハーゲン市",de:"ヤン・ゲール（調査・提言）",co:"1962年に試験的に車両通行禁止、64年に恒久化。ゲールが人間行動を定量調査し「環境の質→任意活動→社会活動」の連鎖を実証した歩行者天国の原点。",url:"https://www.pps.org/places/strooget-district",w:["en","Strøget"]},
+{n:2,name:"スーパーキーレン",loc:"🇩🇰 コペンハーゲン",r:"europe",p:"gov",t:["play","landscape"],pl:"コペンハーゲン市＋Realdania",de:"BIG＋Topotek1＋SUPERFLEX",co:"住民が母国のオブジェクトを推薦し配置する「世界のベストプラクティスの巨大展示」。赤・黒・緑の3ゾーンで多文化共生を体現。",url:"https://www.archdaily.com/286223/superkilen-topotek-1-big-architects-superflex",w:["en","Superkilen"]},
+{n:3,name:"ニューハウン",loc:"🇩🇰 コペンハーゲン",r:"europe",p:"gov",t:["cafe","water"],pl:"コペンハーゲン市",de:"歴史的形成＋1970s保存修復",co:"1980年に北岸を車両禁止化。運河沿いの色彩豊かなファサードとテラスが北欧の南欧的カフェ文化を実現。",url:"https://en.wikipedia.org/wiki/Nyhavn",w:["en","Nyhavn"]},
+{n:4,name:"カンポ広場",loc:"🇮🇹 シエナ",r:"europe",p:"organic",t:["landscape","cafe"],pl:"シエナ共和国「九人の政府」",de:"自然発生＋中世都市計画",co:"自然地形の傾斜を活かした扇形。天然のアンフィシアター効果で、座面を設計せずとも地面全体が市民・学生の滞留場所に。",url:"https://en.wikipedia.org/wiki/Piazza_del_Campo",w:["en","Piazza del Campo"]},
+{n:5,name:"ピアッツァ・ナヴォーナ",loc:"🇮🇹 ローマ",r:"europe",p:"organic",t:["cafe","market"],pl:"教皇インノケンティウス10世",de:"ベルニーニ／ボッロミーニ",co:"古代競技場の長楕円形を継承。バロックの噴水・大道芸・カフェ・路地裏の飲食店が共存する自然発生的な日常の舞台。",url:"https://en.wikipedia.org/wiki/Piazza_Navona",w:["en","Piazza Navona"]},
+{n:6,name:"ランブラス通り",loc:"🇪🇸 バルセロナ",r:"europe",p:"gov",t:["flow","market"],pl:"バルセロナ市",de:"中世水路跡＋Lola Domènech(改修)",co:"1766年に成立した散策軸。花屋・新聞売り・大道芸が並ぶ中央歩行帯と両側のカフェ・市場が連動する全市民の社交の場。",url:"https://en.wikipedia.org/wiki/La_Rambla,_Barcelona",w:["en","La Rambla, Barcelona"]},
+{n:7,name:"プラザ・マヨール",loc:"🇪🇸 マドリード",r:"europe",p:"gov",t:["cafe","market"],pl:"スペイン王室",de:"エレラ→ゴメス・デ・モラ→ビリャヌエバ",co:"赤レンガ・スレート屋根・連続バルコニーで統一されたバロック広場。テラスでタパスとシェリーを楽しむ日常風景の舞台。",url:"https://en.wikipedia.org/wiki/Plaza_Mayor,_Madrid",w:["en","Plaza Mayor, Madrid"]},
+{n:8,name:"グラン・プラス",loc:"🇧🇪 ブリュッセル",r:"europe",p:"organic",t:["landscape","market"],pl:"ブリュッセル市参事会",de:"各ギルドの自主再建(1695年破壊後)",co:"ギルドの競争的美意識が結果的に統一感ある壮大な空間を生んだ世界遺産。花市場が日常の賑わいを支える。",url:"https://whc.unesco.org/en/list/857/",w:["en","Grand-Place"]},
+{n:9,name:"グラナリースクエア",loc:"🇬🇧 ロンドン",r:"europe",p:"private",t:["water","culture"],pl:"Argent Group（デベロッパー）",de:"Townshend Landscape Architects",co:"再開発の「アクティブな心臓部」。1,080基の噴水と運河沿いの飲食、隣接するCentral Saint Martinsの学生が日常の賑わいを生む。",url:"https://www.kingscross.co.uk/granary-square",w:["en","Granary Square"]},
+{n:10,name:"サウスバンク・センター",loc:"🇬🇧 ロンドン",r:"europe",p:"gov",t:["culture","flow"],pl:"ロンドン県議会／Long Live Southbank",de:"LCC建築部門／FCBStudios(改修)",co:"建物下部を意図的にオープンに残した空間を1973年からスケーターが占拠。ブルータリズム建築とサブカルが共存する世界最古のスケート聖地。",url:"https://www.archdaily.com/922214/a-brutalist-landmark-and-skateboarding-mecca-in-london-is-restored",w:["en","Southbank Centre"]},
+{n:11,name:"ポンピドゥーセンター前広場",loc:"🇫🇷 パリ",r:"europe",p:"gov",t:["culture","landscape"],pl:"フランス政府",de:"レンゾ・ピアノ＋リチャード・ロジャース",co:"「建物を片側に寄せ残り半分を公共広場に」。大道芸と観光客が集う前面広場が衰退地区の再活性化の触媒となった。",url:"https://www.archdaily.com/64028/ad-classics-centre-georges-pompidou-renzo-piano-richard-rogers",w:["en","Centre Pompidou"]},
+{n:12,name:"オテル・ド・ヴィル前広場",loc:"🇫🇷 パリ",r:"europe",p:"gov",t:["tactical","play"],pl:"パリ市",de:"市の季節運営プログラム",co:"冬はスケートリンク、夏はParis Plages（ビーチ）と季節で劇的に変容。恒久什器は最小限、プログラムの密度で日常を維持。",url:"https://www.pps.org/places/hotel-de-ville-city-hall",w:["en","Hôtel de Ville, Paris"]},
+{n:13,name:"マルクト広場（Rynek Główny）",loc:"🇵🇱 クラクフ",r:"europe",p:"gov",t:["market","cafe"],pl:"クラクフ市（1257年計画）",de:"中世の都市計画",co:"PPS「世界最高の広場」。欧州最大の中世広場でありながら人間スケールの親密さを保ち、中央の織物会館が常設の商業核に。",url:"https://www.pps.org/article/internationalsquares",w:["en","Main Square, Kraków"]},
+{n:14,name:"Aker Brygge",loc:"🇳🇴 オスロ",r:"europe",p:"private",t:["water","cafe"],pl:"Norwegian Property",de:"LINK Landskap",co:"造船所跡地をフィヨルドとの接点に。社会的交流を「育み祝福する」サイト固有のファニチャー。年間約1,200万人が訪問。",url:"https://landezine.com/the-waterfront-promenade-at-aker-brygge-by-link-landskap/",w:["en","Aker Brygge"]},
+{n:15,name:"ヘルシンキ・マーケットスクエア",loc:"🇫🇮 ヘルシンキ",r:"europe",p:"gov",t:["market","water"],pl:"ヘルシンキ市",de:"C.L.エンゲル他／港湾整備",co:"バルト海に面した毎日開催の市場。鮮魚・農産物販売という必要活動が飲食・散策へ自然に展開する。",url:"https://en.wikipedia.org/wiki/Market_Square,_Helsinki",w:["en","Market Square, Helsinki"]},
+{n:16,name:"Piazze Aperte",loc:"🇮🇹 ミラノ",r:"europe",p:"gov",t:["tactical","community"],pl:"ミラノ市＋AMAT",de:"Bloomberg Associates＋GDCI／住民共創",co:"「数千ユーロと数ヶ月で場所を変えられる完全に可逆的な手法」。駐車場や交差点をペイントと什器で広場化し全市40箇所超に展開。",url:"https://globaldesigningcities.org/update/piazze_aperte_report-en/",w:null},
+{n:17,name:"マリエンプラッツ",loc:"🇩🇪 ミュンヘン",r:"europe",p:"gov",t:["flow","cafe"],pl:"ミュンヘン市",de:"市の都市政策(1972歩行者化)",co:"五輪と公共交通網近代化を一体的に推進した都市改造の一環。隣接するヴィクトアリエンマルクトとの連続性が賑わいを保証。",url:"https://en.wikipedia.org/wiki/Marienplatz",w:["en","Marienplatz"]},
+{n:18,name:"ヴィクトアリエンマルクト",loc:"🇩🇪 ミュンヘン",r:"europe",p:"organic",t:["market","cafe"],pl:"バイエルン王室→ミュンヘン市",de:"自然発生／戦後7区画に再編",co:"「内側から外側へ溢れ出すスタンド、8つの入口、立ち飲みバーの重層」。中央ビアガーデンが市民の日常的社交の場に。",url:"https://en.wikipedia.org/wiki/Viktualienmarkt",w:["en","Viktualienmarkt"]},
+{n:19,name:"ムジェーオン広場",loc:"🇳🇱 アムステルダム",r:"europe",p:"gov",t:["lawn","culture"],pl:"アムステルダム市",de:"スヴェン=イングヴァル・アンダーソン",co:"「空虚さと中立性」を優先し美術館群を前景化するミニマル設計。地下に駐車場を収め広大な芝生が自然な前庭となる。",url:"https://en.wikipedia.org/wiki/Museumplein",w:["en","Museumplein"]},
+{n:20,name:"プラーター周辺広場",loc:"🇦🇹 ウィーン",r:"europe",p:"gov",t:["play","lawn"],pl:"ウィーン市（1766開放）",de:"自然発生／大観覧車",co:"皇帝の狩猟場を市民に開放した18世紀の決断が原点。遊園地と広大な緑地が一体化し家族連れの日常利用が活発。",url:"https://en.wikipedia.org/wiki/Prater",w:["en","Prater"]},
+{n:21,name:"ブライアントパーク",loc:"🇺🇸 ニューヨーク",r:"namerica",p:"ppp",t:["lawn","tactical"],pl:"Bryant Park Restoration Corp.（BID）",de:"Hanna/Olin（ローリー・オリン）",co:"荒廃地を民間資金のBID方式で再生。可動椅子・無料プログラム・冬季スケートで「数日で社会的性格が一変」した世界的模範。",url:"https://www.theolinstudio.com/bryant-park",w:["en","Bryant Park"]},
+{n:22,name:"タイムズスクエア歩行者空間",loc:"🇺🇸 ニューヨーク",r:"namerica",p:"gov",t:["flow","tactical"],pl:"NYC交通局（DOT）",de:"Snøhetta",co:"2009年のペイント＋椅子の社会実験から恒久化。2.5エーカーの歩行者空間で負傷40%減。劇場の歴史を映すカスタム舗装。",url:"https://www.snohetta.com/projects/times-square",w:["en","Times Square"]},
+{n:23,name:"キャンパス・マーシャス",loc:"🇺🇸 デトロイト",r:"namerica",p:"ppp",t:["community","tactical"],pl:"Detroit 300＋PPS",de:"Rundell Ernstberger Associates",co:"「公園は街の歴史・精神・アイデンティティを伝えねばならない」。ビーチ・スケート・映画などプログラムでダウンタウン再生を牽引。",url:"https://www.pps.org/article/greatesthits7",w:["en","Campus Martius Park"]},
+{n:24,name:"パイオニア・コートハウス・スクエア",loc:"🇺🇸 ポートランド",r:"namerica",p:"gov",t:["community","tactical"],pl:"ポートランド市",de:"Willard Martin率いるチーム",co:"アゴラに着想した「ポートランドのリビングルーム」。市民がレンガに名を刻み所有感を醸成した全米コンペ勝利作。",url:"https://www.portland.gov/parks/pioneer-courthouse-square",w:["en","Pioneer Courthouse Square"]},
+{n:25,name:"ディスカバリーグリーン",loc:"🇺🇸 ヒューストン",r:"namerica",p:"ppp",t:["lawn","play"],pl:"Discovery Green Conservancy(PPP)",de:"Hargreaves Jones＋Page",co:"空き駐車場12エーカーを緑のデスティネーションに。犬の公園・ミスト・遊び場・無料コンサートでダウンタウン変革の触媒に。",url:"https://www.hargreaves.com/work/discovery-green/",w:["en","Discovery Green"]},
+{n:26,name:"グランヴィルアイランド",loc:"🇨🇦 バンクーバー",r:"namerica",p:"gov",t:["market","water"],pl:"CMHC（カナダ連邦住宅公社）",de:"Norm Hotson＋Joost Bakker",co:"「公園化せず工場空間をプログラムすれば都市は活性化する」。パブリックマーケットを核に年間1,050万人が訪れるミクストユース。",url:"https://urbanland.uli.org/planning-design/keeping-an-urban-authenticity-alive-vancouvers-granville-island",w:["en","Granville Island"]},
+{n:27,name:"ミレニアムパーク",loc:"🇺🇸 シカゴ",r:"namerica",p:"ppp",t:["landscape","play"],pl:"シカゴ市＋Millennium Park Inc.",de:"SOM／ゲーリー／カプーア／プレンサ",co:"「ザ・ビーン」や市民の顔を映すクラウンファウンテンなどアートと遊びが融合。バーナムの100年ビジョンの完成。",url:"https://www.architecture.org/online-resources/buildings-of-chicago/millennium-park",w:["en","Millennium Park"]},
+{n:28,name:"ジェイミソンスクエア",loc:"🇺🇸 ポートランド",r:"namerica",p:"gov",t:["water","play"],pl:"ポートランド市",de:"Peter Walker & Partners",co:"「帯水層のメタファー」。砂岩の階段壁から水がにじみ出る浅い水盤に、開園初日から市内中の子どもが殺到。",url:"https://www.portland.gov/parks/jamison-square",w:["en","Jamison Square"]},
+{n:29,name:"清渓川（チョンゲチョン）",loc:"🇰🇷 ソウル",r:"asiaoce",p:"gov",t:["water","flow"],pl:"ソウル特別市",de:"SeoAhn Total Landscape／SDI",co:"高速道路を撤去し10.9kmの河川を復元した前例なき都市再生。飛び石・夜間ライトアップが日常の散策を生む。",url:"https://www.landscapeperformance.org/case-study-briefs/cheonggyecheon-stream-restoration-project",w:["en","Cheonggyecheon"]},
+{n:30,name:"光化門広場",loc:"🇰🇷 ソウル",r:"asiaoce",p:"gov",t:["flow","landscape"],pl:"ソウル特別市",de:"「DEEP SURFACE」チーム（国際コンペ）",co:"16車線を縮小し広場を倍増。「地上は空、地下は充」の多層的記憶の空間。5,000本の植樹と歴史水路を新設。",url:"https://en.wikipedia.org/wiki/Gwanghwamun_Square",w:["en","Gwanghwamun Square"]},
+{n:31,name:"Seoullo 7017",loc:"🇰🇷 ソウル",r:"asiaoce",p:"gov",t:["landscape","flow"],pl:"ソウル特別市",de:"MVRDV",co:"廃高架を「韓国の自然遺産の生きた辞書」に転換。228種・24,000本の植物を645の植木鉢に展示する空中庭園。",url:"https://www.archdaily.com/882382/seoullo-skygarden-mvrdv",w:["en","Seoullo 7017"]},
+{n:32,name:"Our Tampines Hub",loc:"🇸🇬 シンガポール",r:"asiaoce",p:"gov",t:["community","play"],pl:"シンガポール政府（People's Assoc.）",de:"DP Architects",co:"「多くの場所の場所」。30超の施設が共有経済モデルで共存し、地階は周辺ストリートの延長として開かれる。無料映画・学習空間も。",url:"https://www.dpa.com.sg/projects/our-tampines-hub/",w:["en","Our Tampines Hub"]},
+{n:33,name:"フェデレーションスクエア",loc:"🇦🇺 メルボルン",r:"asiaoce",p:"gov",t:["culture","community"],pl:"ヴィクトリア州＋メルボルン市",de:"LAB Architecture Studio＋Bates Smart",co:"「伝統的な幾何学秩序を拒否」した21世紀の市民広場。美術館・映画・駅・飲食の密度が「メルボルンの日常のステージ」を稼働させる。",url:"https://architectureau.com/articles/federation-square/",w:["en","Federation Square"]},
+{n:34,name:"ダーリング・スクエア",loc:"🇦🇺 シドニー",r:"asiaoce",p:"private",t:["cafe","flow"],pl:"Lendlease（デベロッパー）",de:"隈研吾／ASPECT Studios",co:"「市場交換所だった歴史への参照」として木材で包んだThe Exchange。図書館・保育園・フードホール・遊び場が一体化。",url:"https://www.dezeen.com/2020/01/28/kengo-kumas-exchange-darling-square-sydney-australia/",w:["en","Darling Harbour"]},
+{n:35,name:"ガーデンズ・バイ・ザ・ベイ",loc:"🇸🇬 シンガポール",r:"asiaoce",p:"gov",t:["landscape","play"],pl:"シンガポール国立公園局(NParks)",de:"Grant Associates＋Wilkinson Eyre",co:"国花・蘭から発想したマスタープラン。発電し排熱を換気するスーパーツリー。無料エリアと毎晩のライトショーが日常利用の核。",url:"https://www.archdaily.com/155467/gardens-by-the-bay-grant-associates-and-wilkinson-eyre-architects",w:["en","Gardens by the Bay"]},
+{n:36,name:"南池袋公園",loc:"🇯🇵 東京",r:"japan",p:"ppp",t:["lawn","community"],pl:"豊島区",de:"ランドスケープ・プラス／運営nest",co:"「消滅可能性都市指定をバネに人が主役の街づくり」。芝生＋カフェ、売上の一部を地域貢献費に充てる公民連携運営。",url:"https://ikebukuropark.com/mip-greenblvd/",w:["ja","南池袋公園"]},
+{n:37,name:"グリーン大通り",loc:"🇯🇵 東京",r:"japan",p:"ppp",t:["flow","tactical"],pl:"豊島区＋nest",de:"nest（社会実験デザイン）",co:"「通り過ぎる場所から市民のステージへ」。社会実験を経てテーブル・椅子を常設化し、マルシェ・野外シネマを展開。",url:"https://mamekurashi.com/ikebukuro/",w:null},
+{n:38,name:"丸の内仲通り",loc:"🇯🇵 東京",r:"japan",p:"private",t:["flow","cafe"],pl:"三菱地所（エリアマネジメント）",de:"三菱地所設計",co:"「丸の内Reデザイン＝価値を生み出す舞台づくり」。テラス席や花壇で建物1階と通りを連続させ回遊性を強化。通年広場化要望が約9割。",url:"https://www.mec.co.jp/j/service/project/project01/index.html",w:null},
+{n:39,name:"MIYASHITA PARK",loc:"🇯🇵 東京",r:"japan",p:"private",t:["landscape","lawn"],pl:"三井不動産＋渋谷区",de:"日建設計（PA）＋竹中工務店",co:"「大地に描かれた一本のライン」。立体都市公園制度で公園・商業・ホテルを全長330mに一体化。キャノピーで緑陰とアクティビティを両立。",url:"https://www.takenaka.co.jp/design/works/miyashita-park/",w:["ja","MIYASHITA PARK"]},
+{n:40,name:"東京ミッドタウン日比谷 ステップ広場",loc:"🇯🇵 東京",r:"japan",p:"private",t:["culture","flow"],pl:"三井不動産＋日比谷エリアマネジメント",de:"Hopkins Architects",co:"「スペイン広場を想起させる階段のある劇場型広場」。直径約30mの円形広場でステップに腰かけイベントを楽しめる。",url:"https://www.mitsuifudosan.co.jp/machidukuri/tokyo_midtown_hibiya/concept.html",w:["ja","東京ミッドタウン日比谷"]},
+{n:41,name:"柏の葉アクアテラス",loc:"🇯🇵 千葉",r:"japan",p:"ppp",t:["water","community"],pl:"千葉県・柏市・三井不動産・UDCK",de:"金香昌治／日建設計",co:"「見るだけの池から触れ合える水辺へ」。治水機能と親水性を両立。管理協定と共益費負担で持続的運営を実現。",url:"https://www.nikken.co.jp/ja/projects/landscape/kashiwanoha_aqua_terrace.html",w:null},
+{n:42,name:"グランフロント大阪 うめきた広場",loc:"🇯🇵 大阪",r:"japan",p:"ppp",t:["flow","culture"],pl:"民間17社／運営TMO",de:"日建設計他／安藤忠雄(監修)",co:"「水と緑と賑わい」。JR大阪駅直結の結節点に安藤忠雄監修の広場。ナレッジキャピタルが文化的アンカーに。",url:"https://www.grandfront-osaka.jp/project/",w:["ja","グランフロント大阪"]},
+{n:43,name:"ジェマ・エル・フナ広場",loc:"🇲🇦 マラケシュ",r:"latamafrica",p:"organic",t:["market","landscape"],pl:"自然発生／UNESCO保全",de:"特定設計者なし（有機的形成）",co:"UNESCO無形文化遺産。朝はジュース売り、午後は蛇使い、夜は屋台群と、日の出から深夜まで変容し続ける広場。",url:"https://ich.unesco.org/en/RL/cultural-space-of-jemaa-el-fna-square-00014",w:["en","Jemaa el-Fnaa"]},
+{n:44,name:"ソカロ",loc:"🇲🇽 メキシコシティ",r:"latamafrica",p:"organic",t:["community","tactical"],pl:"アステカ→スペイン征服→市",de:"García Bravo／市の都市整備",co:"約57,000㎡のラテンアメリカ最大級広場。2017年改修で歩行者優先化。集会・ピクニック・スケートリンクと多目的に機能。",url:"https://en.wikipedia.org/wiki/Zócalo,_Mexico_City",w:["en","Zócalo"]},
+{n:45,name:"Parque de los Deseos",loc:"🇨🇴 メデジン",r:"latamafrica",p:"gov",t:["culture","play"],pl:"Empresas Públicas de Medellín",de:"Felipe Uribe de Bedout",co:"「文化的コンテンツを実装する装置としての建築」。プラネタリウム隣接の水遊び場・無料映画・天体観測が北部再生の触媒に。",url:"https://arquitecturapanamericana.com/conjunto-parque-de-los-deseos/",w:["es","Parque de los Deseos"]},
+{n:46,name:"Largo da Batata",loc:"🇧🇷 サンパウロ",r:"latamafrica",p:"civic",t:["tactical","community"],pl:"市民活動集団（建築家L.カブラル）",de:"市民参加型の共同デザイン",co:"「使用価値に基づく街づくり」。毎週金曜にビーチチェアやテントを持ち寄り、ヨガ・映画・音楽が自発的に展開する自主管理広場。",url:"https://www.instituteforpublicart.org/case-studies/a-batata-precisa-de-voce-the-batata-needs-you/",w:["pt","Largo da Batata"]},
+{n:47,name:"下北線路街 空き地",loc:"🇯🇵 東京",r:"japan",p:"private",t:["community","tactical"],pl:"小田急電鉄",de:"UDS／ツバメアーキテクツ(監修)",co:"「BE YOU.」を体現する「みんなでつくる自由なあそび場」。レンタルキッチンやキッチンカーで「やってみたい」を応援。",url:"https://tbma.jp/works/%E4%B8%8B%E5%8C%97%E7%B7%9A%E8%B7%AF%E8%A1%97-%E7%A9%BA%E3%81%8D%E5%9C%B0/",w:null},
+{n:48,name:"インフラスタンド",loc:"🇯🇵 埼玉・所沢",r:"japan",p:"civic",t:["community"],pl:"石和設備工業（水道工事会社）",de:"高橋真理奈／シン設計室",co:"直径6.4mの円形屋根の下にベンチを配し夜は建築自体が発光。「設備のインフラとコミュニティのインフラの二重性」を体現する民間発の公共トイレ。",url:"https://architecturephoto.net/176297/",w:null},
+{n:49,name:"北浜テラス（大阪川床）",loc:"🇯🇵 大阪",r:"japan",p:"civic",t:["water","cafe"],pl:"北浜水辺協議会（店主・NPO等）",de:"ハートビートプラン（企画推進）",co:"「陸と川の連続性／見る見られる風景／継続可能な風物詩」。私有地のテラスが公共の堤防上まで伸び、官民の境界を溶かす。",url:"https://mizbering.jp/archives/6477",w:null},
+{n:50,name:"天王洲アイル ボードウォーク",loc:"🇯🇵 東京",r:"japan",p:"private",t:["water","culture"],pl:"寺田倉庫",de:"寺田倉庫主導／隈研吾(PIGMENT)",co:"倉庫街を「アートの島」に転換。運河沿いボードウォークにギャラリー群が集積し、水辺散策とアート鑑賞が日常的に結びつく。",url:"https://warehouseofart.org",w:["ja","天王洲アイル"]}
+];
+const ST={types:new Set(),region:new Set(),planner:new Set(),mode:"or"};
+function typePill(k,clickable){const T=TYPES[k];return '<span class="pill" '+(clickable?'data-tk="'+k+'"':'')+' style="background:'+T.bg+';color:'+T.tx+';border-color:'+T.c+'"><i class="ti '+T.i+'"></i>'+T.l+'</span>';}
+function renderFilters(){
+ const tc={};Object.keys(TYPES).forEach(k=>tc[k]=0);DATA.forEach(d=>d.t.forEach(k=>tc[k]++));
+ document.getElementById('f-types').innerHTML=Object.keys(TYPES).map(k=>{const T=TYPES[k];const on=ST.types.has(k);return '<span class="pill" data-tk="'+k+'" style="background:'+(on?T.c:T.bg)+';color:'+(on?'#fff':T.tx)+';border-color:'+T.c+';font-weight:'+(on?'600':'400')+'"><i class="ti '+T.i+'"></i>'+T.l+' '+tc[k]+'</span>';}).join('');
+ const rc={};Object.keys(REGIONS).forEach(k=>rc[k]=0);DATA.forEach(d=>rc[d.r]++);
+ document.getElementById('f-region').innerHTML=Object.keys(REGIONS).map(k=>{const on=ST.region.has(k);return '<button class="seg'+(on?' on':'')+'" data-rk="'+k+'">'+REGIONS[k]+' '+rc[k]+'</button>';}).join('');
+ const pc={};Object.keys(PLANNERS).forEach(k=>pc[k]=0);DATA.forEach(d=>pc[d.p]++);
+ document.getElementById('f-planner').innerHTML=Object.keys(PLANNERS).map(k=>{const on=ST.planner.has(k);return '<button class="seg'+(on?' on':'')+'" data-pk="'+k+'">'+PLANNERS[k]+' '+pc[k]+'</button>';}).join('');
+}
+function card(d){
+ const tags=d.t.map(k=>typePill(k,true)).join(' ');
+ const ph=TYPES[d.t[0]];const pad=String(d.n).padStart(2,'0');
+ return '<div class="card">'+
+  '<div class="imgwrap" style="background:'+ph.bg+'"><i class="ti '+ph.i+' ph" style="color:'+ph.c+'"></i>'+
+   '<img alt="'+d.name+'" data-n="'+d.n+'" data-pad="'+pad+'" data-wlang="'+(d.w?d.w[0]:'')+'" data-wtitle="'+(d.w?d.w[1].replace(/"/g,'&quot;'):'')+'" /></div>'+
+  '<div class="cbody">'+
+   '<div><div class="cname">'+d.n+'. '+d.name+'</div><div class="cloc">'+d.loc+'</div></div>'+
+   '<div class="cbadges"><span class="badge"><i class="ti ti-world"></i> '+REGIONS[d.r]+'</span><span class="badge"><i class="ti ti-building-community"></i> '+PLANNERS[d.p]+'</span></div>'+
+   '<div class="ctags">'+tags+'</div>'+
+   '<div class="cmeta"><span class="k">計画主体：</span>'+d.pl+'<br><span class="k">デザイン：</span>'+d.de+'</div>'+
+   '<div class="cco">'+d.co+'</div>'+
+   '<a class="clink" href="'+d.url+'" target="_blank" rel="noopener">出典・詳細 <i class="ti ti-external-link"></i></a>'+
+  '</div></div>';
+}
+function matches(d){
+ if(ST.region.size&&!ST.region.has(d.r))return false;
+ if(ST.planner.size&&!ST.planner.has(d.p))return false;
+ if(ST.types.size){const arr=[...ST.types];if(ST.mode==='and'){if(!arr.every(k=>d.t.includes(k)))return false;}else{if(!arr.some(k=>d.t.includes(k)))return false;}}
+ return true;
+}
+function render(){
+ const list=DATA.filter(matches);
+ document.getElementById('grid').innerHTML=list.map(card).join('');
+ const active=ST.types.size+ST.region.size+ST.planner.size;
+ document.getElementById('f-count').textContent=active?(list.length+'件を表示中（全'+DATA.length+'件）'):('全'+DATA.length+'件を表示');
+ loadImages();
+}
+function loadImages(){
+ document.querySelectorAll('#grid img').forEach(img=>{
+  const pad=img.dataset.pad;const locals=['images/'+pad+'.jpg','images/'+pad+'.jpeg','images/'+pad+'.png','images/'+pad+'.webp'];let i=0;
+  function done(src){img.src=src;img.style.opacity=1;}
+  function tryLocal(){if(i>=locals.length){tryWiki();return;}const t=new Image();t.onload=()=>done(locals[i]);t.onerror=()=>{i++;tryLocal();};t.src=locals[i];}
+  function tryWiki(){const lang=img.dataset.wlang,title=img.dataset.wtitle;if(!lang||!title)return;
+   fetch('https://'+lang+'.wikipedia.org/api/rest_v1/page/summary/'+encodeURIComponent(title)).then(r=>r.ok?r.json():null).then(j=>{const s=j&&((j.thumbnail&&j.thumbnail.source)||(j.originalimage&&j.originalimage.source));if(s){const p=new Image();p.onload=()=>done(s);p.src=s;}}).catch(()=>{});}
+  tryLocal();
+ });
+}
+document.getElementById('f-types').addEventListener('click',e=>{const t=e.target.closest('[data-tk]');if(t){const k=t.dataset.tk;ST.types.has(k)?ST.types.delete(k):ST.types.add(k);renderFilters();render();}});
+document.getElementById('f-region').addEventListener('click',e=>{const t=e.target.closest('[data-rk]');if(t){const k=t.dataset.rk;ST.region.has(k)?ST.region.delete(k):ST.region.add(k);renderFilters();render();}});
+document.getElementById('f-planner').addEventListener('click',e=>{const t=e.target.closest('[data-pk]');if(t){const k=t.dataset.pk;ST.planner.has(k)?ST.planner.delete(k):ST.planner.add(k);renderFilters();render();}});
+document.getElementById('f-mode').addEventListener('click',e=>{const b=e.target.closest('[data-m]');if(b){ST.mode=b.dataset.m;document.querySelectorAll('#f-mode button').forEach(x=>x.classList.toggle('on',x.dataset.m===ST.mode));render();}});
+document.getElementById('f-reset').addEventListener('click',()=>{ST.types.clear();ST.region.clear();ST.planner.clear();renderFilters();render();});
+renderFilters();render();
+</script>
+</body>
+</html>
